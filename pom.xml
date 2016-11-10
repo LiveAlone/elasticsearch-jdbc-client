@@ -24,7 +24,6 @@
 
 	<dependencyManagement>
 		<dependencies>
-
 			<!-- https://mvnrepository.com/artifact/org.nlpcn/elasticsearch-sql -->
 			<dependency>
 				<groupId>org.nlpcn</groupId>
@@ -58,6 +57,7 @@
 				<scope>provided</scope>
 			</dependency>
 
+			<!-- guava high 19.0 where 查询异常 -->
 			<dependency>
 				<groupId>com.google.guava</groupId>
 				<artifactId>guava</artifactId>
