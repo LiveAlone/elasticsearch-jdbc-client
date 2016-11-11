@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qingqing.search.demo.mapper.ActivityMapper">
+	<resultMap id="BaseResultMap" type="com.qingqing.search.demo.domain.ActivityBase">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="alias_name" property="aliasName" jdbcType="VARCHAR" />
+		<result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+		<result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+		<result column="is_active" property="isActive" jdbcType="TINYINT" />
+		<result column="has_stock" property="hasStock" jdbcType="TINYINT" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id, alias_name, start_time, end_time, is_active, has_stock
+	</sql>
+
+	<select id="findAll" resultMap="BaseResultMap">
+		select * from t_activity
+	</select>
+
+</mapper>

@@ -35,7 +35,14 @@ public class SqlSupportTest {
 
 //        testAggExe(esJdbc);
 
+        distinct(esJdbc);
+
         esJdbc.close();
+    }
+
+    public static void distinct(EsJdbc esJdbc) throws Exception{
+        resultOutput(Lists.newArrayList("age"),
+                esJdbc.resultSet("select distinct(age) as age from teacher"));
     }
 
     public static void testAggExe(EsJdbc esJdbc) throws Exception{
