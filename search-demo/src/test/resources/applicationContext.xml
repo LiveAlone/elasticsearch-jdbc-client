@@ -8,48 +8,36 @@
 
     <bean id="elasticSearchDruidDataSource" class="com.alibaba.druid.pool.ElasticSearchDruidDataSource">
 		<property name="initialSize" value="1"/>
-        <property name="url" value="result:elasticsearch://localhost:9300/teacher"/>
+        <property name="url" value="result:elasticsearch://192.168.1.11:9300/teacher"/>
     </bean>
 
-	<!--<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">-->
-		<!--<property name="dataSource" ref="elasticSearchDruidDataSource"/>-->
-        <!--<property name="typeAliasesPackage" value="com.qingqing.search.demo.domain"/>-->
-        <!--&lt;!&ndash;<property name="mapperLocations" value="classpath*:com/qingqing/search/demo/mapper/*.xml"/>&ndash;&gt;-->
-		<!--&lt;!&ndash;<property name="configLocation" value="mybatis-config.xml"/>&ndash;&gt;-->
-	<!--</bean>-->
+    <bean id="qq_data" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver">
+        </property>
+        <property name="url" value="jdbc:mysql://localhost:3306/test_personal?characterEncoding=UTF-8"/>
+        <property name="username"><value>root</value></property>
+        <property name="password"><value>anywhere</value></property>
 
-	<!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
-		<!--&lt;!&ndash;<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>&ndash;&gt;-->
-		<!--<property name="basePackage" value="com.qingqing.search.demo.mapper"/>-->
-	<!--</bean>-->
-
-    <!--<bean id="qq_data" class="org.apache.commons.dbcp.BasicDataSource">-->
-        <!--<property name="driverClassName" value="com.mysql.jdbc.Driver">-->
-        <!--</property>-->
-        <!--<property name="url" value="jdbc:mysql://172.20.12.10:3306/qq_data?characterEncoding=UTF-8"/>-->
-        <!--<property name="username"><value>qingqingDev</value></property>-->
-        <!--<property name="password"><value>qingqing@dev</value></property>-->
-
-        <!--&lt;!&ndash;maxIdle: 最大空闲连接 &ndash;&gt;-->
-        <!--<property name="maxIdle" value="10" />-->
-        <!--&lt;!&ndash;minIdle: 最小空闲连接 &ndash;&gt;-->
-        <!--<property name="minIdle" value="5" />-->
-        <!--&lt;!&ndash;maxActive: 最大连接数量 &ndash;&gt;-->
-        <!--<property name="maxActive" value="15" />-->
-        <!--&lt;!&ndash; <property name="logAbandoned" value="true" /> &ndash;&gt;-->
-        <!--&lt;!&ndash;removeAbandoned: 是否自动回收超时连接 &ndash;&gt;-->
-        <!--<property name="removeAbandoned" value="true" />-->
-        <!--&lt;!&ndash;removeAbandonedTimeout: 超时时间(以秒数为单位) &ndash;&gt;-->
-        <!--<property name="removeAbandonedTimeout" value="280" />-->
-        <!--&lt;!&ndash;maxWait: 超时等待时间以毫秒为单位 6000毫秒/1000等于60秒 &ndash;&gt;-->
-        <!--<property name="maxWait" value="30000" />-->
-        <!--<property name="validationQuery">-->
-            <!--<value>SELECT 1 FROM DUAL</value>-->
-        <!--</property>-->
-        <!--<property name="testOnBorrow">-->
-            <!--<value>true</value>-->
-        <!--</property>-->
-    <!--</bean>-->
+        <!--maxIdle: 最大空闲连接 -->
+        <property name="maxIdle" value="10" />
+        <!--minIdle: 最小空闲连接 -->
+        <property name="minIdle" value="5" />
+        <!--maxActive: 最大连接数量 -->
+        <property name="maxActive" value="15" />
+        <!-- <property name="logAbandoned" value="true" /> -->
+        <!--removeAbandoned: 是否自动回收超时连接 -->
+        <property name="removeAbandoned" value="true" />
+        <!--removeAbandonedTimeout: 超时时间(以秒数为单位) -->
+        <property name="removeAbandonedTimeout" value="280" />
+        <!--maxWait: 超时等待时间以毫秒为单位 6000毫秒/1000等于60秒 -->
+        <property name="maxWait" value="30000" />
+        <property name="validationQuery">
+            <value>SELECT 1 FROM DUAL</value>
+        </property>
+        <property name="testOnBorrow">
+            <value>true</value>
+        </property>
+    </bean>
 
     <!--<bean id="transactionManagerData" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
         <!--<qualifier value="transactionManagerData"/>-->

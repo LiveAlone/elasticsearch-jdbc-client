@@ -10,14 +10,12 @@ import java.util.List;
  */
 public class ElasticSearchResultSetMetaDataBase extends ResultSetMetaDataBase{
 
-    private final List<ColumnMetaData> columns = new ArrayList<ColumnMetaData>();
-
     public ElasticSearchResultSetMetaDataBase(List<String> headers) {
         for(String column:headers){
             ColumnMetaData columnMetaData = new ColumnMetaData();
             columnMetaData.setColumnLabel(column);
             columnMetaData.setColumnName(column);
-            columns.add(columnMetaData);
+            getColumns().add(columnMetaData);
         }
     }
 }

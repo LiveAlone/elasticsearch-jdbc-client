@@ -11,10 +11,10 @@
 
 	<dependencies>
 
-		<dependency>
-			<groupId>org.nlpcn</groupId>
-			<artifactId>elasticsearch-sql</artifactId>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>org.nlpcn</groupId>-->
+			<!--<artifactId>elasticsearch-sql</artifactId>-->
+		<!--</dependency>-->
 
 		<dependency>
 			<groupId>org.elasticsearch</groupId>

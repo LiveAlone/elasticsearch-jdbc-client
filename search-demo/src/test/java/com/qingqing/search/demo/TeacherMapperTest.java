@@ -28,8 +28,8 @@ import java.util.Map.Entry;
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})
 public class TeacherMapperTest {
 
-//    @Autowired
-//    private ElasticSearchDruidDataSource elasticSearchDruidDataSource;
+    @Autowired
+    private ElasticSearchDruidDataSource elasticSearchDruidDataSource;
 
     @Autowired
     private TeacherMapper teacherMapper;
@@ -48,7 +48,9 @@ public class TeacherMapperTest {
     public void testMapperQueryCondition(){
         List<Teacher> teachers = teacherMapper.findAll();
         System.out.println(teachers.size());
-//        JSONUtils.toJSONString()
+        for (Teacher teacher : teachers) {
+            System.out.println(teacher.toString());
+        }
     }
 
     /**
@@ -74,17 +76,17 @@ public class TeacherMapperTest {
      */
     @Test
     public void testFromDataSource() throws Exception{
-//        Connection connection = elasticSearchDruidDataSource.getConnection();
-//        PreparedStatement ps = connection.prepareStatement("select * from teacher");
-//        List<String> columns = Lists.newArrayList("id", "name", "age", "salary");
-//        ResultSet resultSet = ps.executeQuery();
-//        while (resultSet.next()) {
-//            System.out.println("-------------------------------");
-//            for (String column : columns) {
-//                System.out.print("  " + column + " is : " + resultSet.getObject(column).toString());
-//            }
-//            System.out.println("");
-//        }
+        Connection connection = elasticSearchDruidDataSource.getConnection();
+        PreparedStatement ps = connection.prepareStatement("select * from teacher");
+        List<String> columns = Lists.newArrayList("id", "name", "age", "salary");
+        ResultSet resultSet = ps.executeQuery();
+        while (resultSet.next()) {
+            System.out.println("-------------------------------");
+            for (String column : columns) {
+                System.out.print("  " + column + " is : " + resultSet.getObject(column).toString());
+            }
+            System.out.println("");
+        }
     }
 
 }
