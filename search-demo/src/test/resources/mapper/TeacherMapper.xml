@@ -5,10 +5,11 @@
 		<id column="id" property="id"/>
 		<result column="name" property="name"/>
 		<result column="age" property="age"/>
+		<result column="salary" property="salary"/>
 	</resultMap>
 	
 	<sql id="Base_Column_List">
-		`id` , `name`, `age`
+		`id` , `name`, `age`, `salary`
 	</sql>
 
 	<select id="findAll" resultMap="BaseResultMap">

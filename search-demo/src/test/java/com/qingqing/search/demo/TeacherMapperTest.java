@@ -1,15 +1,12 @@
 package com.qingqing.search.demo;
 
 import com.alibaba.druid.pool.ElasticSearchDruidDataSource;
-import com.qingqing.search.demo.domain.ActivityBase;
 import com.qingqing.search.demo.domain.Teacher;
-import com.qingqing.search.demo.mapper.ActivityMapper;
 import com.qingqing.search.demo.mapper.TeacherMapper;
 import org.elasticsearch.common.collect.Lists;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -17,8 +14,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
 /**
  * Created by yaoqijun on 2016/11/10.
@@ -33,16 +28,6 @@ public class TeacherMapperTest {
 
     @Autowired
     private TeacherMapper teacherMapper;
-
-
-    @Autowired
-    private ActivityMapper activityMapper;
-
-    @Test
-    public void testCondition(){
-        List<ActivityBase> activityBases = activityMapper.findAll();
-        System.out.println(activityBases.size());
-    }
 
     @Test
     public void testMapperQueryCondition(){

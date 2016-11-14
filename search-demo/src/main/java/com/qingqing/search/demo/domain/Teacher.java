@@ -12,6 +12,8 @@ public class Teacher {
 
     private Integer age;
 
+    private String salary;
+
     public String getId() {
         return id;
     }
@@ -34,6 +36,14 @@ public class Teacher {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public String getSalary() {
+        return salary;
+    }
+
+    public void setSalary(String salary) {
+        this.salary = salary;
     }
 
     @Override

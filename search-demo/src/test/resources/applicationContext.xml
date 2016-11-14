@@ -8,7 +8,7 @@
 
     <bean id="elasticSearchDruidDataSource" class="com.alibaba.druid.pool.ElasticSearchDruidDataSource">
 		<property name="initialSize" value="1"/>
-        <property name="url" value="result:elasticsearch://192.168.1.11:9300/teacher"/>
+        <property name="url" value="result:elasticsearch://127.0.0.1:9300/teacher"/>
     </bean>
 
     <bean id="qq_data" class="org.apache.commons.dbcp.BasicDataSource">
