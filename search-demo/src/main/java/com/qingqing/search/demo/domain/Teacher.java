@@ -11,7 +11,7 @@ public class Teacher {
 
     private String id;
 
-    private Name name;
+    private String name;
 
     private Integer age;
 
@@ -33,11 +33,11 @@ public class Teacher {
         this.id = id;
     }
 
-    public Name getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(Name name) {
+    public void setName(String name) {
         this.name = name;
     }
 

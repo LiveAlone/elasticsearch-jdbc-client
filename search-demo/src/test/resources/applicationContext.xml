@@ -57,7 +57,7 @@
     <!--</bean>-->
 
     <bean id="sqlDataSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="elasticSearchDruidDataSource" />
+        <property name="dataSource" ref="qq_data" />
         <property name="mapperLocations" value="classpath*:mapper/*Mapper.xml"/>
     </bean>
 
