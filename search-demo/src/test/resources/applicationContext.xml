@@ -42,25 +42,8 @@
         </property>
     </bean>
 
-    <!--<bean id="transactionManagerData" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
-        <!--<qualifier value="transactionManagerData"/>-->
-        <!--<property name="dataSource" ref="elasticSearchDruidDataSource" />-->
-    <!--</bean>-->
-
-    <!--<tx:annotation-driven transaction-manager="transactionManagerData" />-->
-
-    <!--<bean id="sqlDataSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">-->
-        <!--<property name="dataSource" ref="qq_data" />-->
-        <!--<property name="configLocation" value="classpath:mybatis-config.xml"/>-->
-    <!--</bean>-->
-
-    <!--<bean id="activityMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
-        <!--<property name="mapperInterface" value="com.qingqing.search.demo.mapper.ActivityMapper"/>-->
-        <!--<property name="sqlSessionFactory" ref="sqlDataSessionFactory"/>-->
-    <!--</bean>-->
-
     <bean id="sqlDataSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
+        <property name="dataSource" ref="elasticSearchDruidDataSource" />
         <property name="mapperLocations" value="classpath*:mapper/*Mapper.xml"/>
     </bean>
 

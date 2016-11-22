@@ -40,26 +40,4 @@ public class StudentMapperTest {
         }
     }
 
-    /**
-     * 测试通过datasource 方式配置
-     */
-    @Test
-    public void testByDatasource() throws Exception{
-        System.out.println(dataSource != null);
-
-        Connection conn =  dataSource.getConnection();
-
-        PreparedStatement statement = conn.prepareStatement("select * from student");
-
-        List<String> columns = Lists.newArrayList("id", "age", "name", "grade");
-
-        ResultSet resultSet = statement.executeQuery();
-
-        while (resultSet.next()){
-            for (String column : columns) {
-                System.out.print("  " + column + " : " + String.valueOf(resultSet.getObject(column)));
-            }
-            System.out.println("");
-        }
-    }
 }

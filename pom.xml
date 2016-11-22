@@ -10,9 +10,10 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<file_encoding>UTF-8</file_encoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
 		<elasticsearch.version>1.7.1</elasticsearch.version>
-		<guava.version>17.0</guava.version>
-		<nlpcn.version>1.4.9</nlpcn.version>
+		<guava.version>18.0</guava.version>
 		<druid.version>1.0.15</druid.version>
 		<servlet.api.version>3.0.1</servlet.api.version>
         <org.springframework.version>3.2.13.RELEASE</org.springframework.version>
@@ -28,12 +29,6 @@
 
 	<dependencyManagement>
 		<dependencies>
-			<!-- https://mvnrepository.com/artifact/org.nlpcn/elasticsearch-sql -->
-			<dependency>
-				<groupId>org.nlpcn</groupId>
-				<artifactId>elasticsearch-sql</artifactId>
-				<version>${nlpcn.version}</version>
-			</dependency>
 
 			<!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
 			<dependency>

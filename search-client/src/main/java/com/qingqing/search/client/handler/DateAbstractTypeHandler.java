@@ -2,7 +2,6 @@ package com.qingqing.search.client.handler;
 
 import com.google.common.base.Strings;
 import com.qingqing.search.client.exception.EsHandlerException;
-import com.sun.xml.internal.ws.handler.HandlerException;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 

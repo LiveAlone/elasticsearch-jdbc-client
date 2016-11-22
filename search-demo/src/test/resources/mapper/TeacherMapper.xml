@@ -3,7 +3,7 @@
 <mapper namespace="com.qingqing.search.demo.mapper.TeacherMapper">
 	<resultMap id="BaseResultMap" type="com.qingqing.search.demo.domain.Teacher">
 		<id column="id" property="id"/>
-		<result column="name" property="name" typeHandler="com.qingqing.search.demo.handler.NameObjectHandler"/>
+		<result column="name" property="name"/>
 		<result column="age" property="age"/>
 		<result column="salary" property="salary" typeHandler="com.qingqing.search.demo.handler.ListSalaryHandler"/>
 	</resultMap>
@@ -13,7 +13,7 @@
 	</sql>
 
 	<select id="findAll" resultMap="BaseResultMap">
-		select * from teacher where id = 2
+		select * from teacher
 	</select>
 
 </mapper>
