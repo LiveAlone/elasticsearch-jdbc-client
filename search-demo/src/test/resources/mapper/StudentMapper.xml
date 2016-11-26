@@ -13,7 +13,7 @@
 	</sql>
 
 	<select id="findAll" resultMap="BaseResultMap">
-		select <include refid="Base_Column_List"/> FROM student;
+		select <include refid="Base_Column_List"/> FROM student where id = 9
 	</select>
 
 </mapper>

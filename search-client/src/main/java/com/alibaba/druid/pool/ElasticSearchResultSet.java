@@ -1,6 +1,9 @@
 package com.alibaba.druid.pool;
 
+import com.alibaba.druid.pool.utils.ResultConvert;
 import com.alibaba.druid.util.jdbc.ResultSetMetaDataBase;
+import com.google.common.base.Objects;
+import com.google.common.primitives.Floats;
 
 import java.io.InputStream;
 import java.io.Reader;
@@ -21,6 +24,7 @@ public class ElasticSearchResultSet implements ResultSet {
     List<Object> current = null;
     List<String> headers = null;
 
+    Boolean wasNull = false;    // getResult 判定结果是否为空
 
     private ResultSetMetaData metaData;
 
@@ -29,6 +33,15 @@ public class ElasticSearchResultSet implements ResultSet {
         this.headers = headers;
         metaData = new ElasticSearchResultSetMetaDataBase(headers);
 
+    }
+
+    private <T> T convertResult(Object o, T defaultValue){
+        if(null == o){
+            wasNull = true;
+            return defaultValue;
+        }else {
+            return (T) ResultConvert.convertTargetValue(o, defaultValue.getClass());
+        }
     }
 
     public boolean next() throws SQLException {
@@ -44,7 +57,10 @@ public class ElasticSearchResultSet implements ResultSet {
     }
 
     public boolean wasNull() throws SQLException {
-        return false;
+        // validate only once
+        Boolean currentResult = wasNull;
+        wasNull = false;
+        return currentResult;
     }
 
     public String getString(int columnIndex) throws SQLException {
@@ -52,7 +68,7 @@ public class ElasticSearchResultSet implements ResultSet {
     }
 
     public boolean getBoolean(int columnIndex) throws SQLException {
-        return (Boolean) current.get(columnIndex);
+        return convertResult(current.get(columnIndex), false);
     }
 
     public byte getByte(int columnIndex) throws SQLException {
@@ -60,23 +76,23 @@ public class ElasticSearchResultSet implements ResultSet {
     }
 
     public short getShort(int columnIndex) throws SQLException {
-        return ((Short) current.get(columnIndex));
+        return convertResult(current.get(columnIndex), (short) 0);
     }
 
     public int getInt(int columnIndex) throws SQLException {
-        return ((Integer) current.get(columnIndex));
+        return convertResult(current.get(columnIndex), 0);
     }
 
     public long getLong(int columnIndex) throws SQLException {
-        return (Long) current.get(columnIndex);
+        return convertResult(current.get(columnIndex), 0L);
     }
 
     public float getFloat(int columnIndex) throws SQLException {
-        return ((Float) current.get(columnIndex)).floatValue();
+        return convertResult(current.get(columnIndex), 0f);
     }
 
     public double getDouble(int columnIndex) throws SQLException {
-        return (Double) current.get(columnIndex);
+        return convertResult(current.get(columnIndex), 0d);
     }
 
     public BigDecimal getBigDecimal(int columnIndex, int scale) throws SQLException {
@@ -116,7 +132,7 @@ public class ElasticSearchResultSet implements ResultSet {
     }
 
     public boolean getBoolean(String columnLabel) throws SQLException {
-        return (Boolean) current.get(headers.indexOf(columnLabel));
+        return convertResult(current.get(headers.indexOf(columnLabel)), false);
     }
 
     public byte getByte(String columnLabel) throws SQLException {
@@ -124,23 +140,23 @@ public class ElasticSearchResultSet implements ResultSet {
     }
 
     public short getShort(String columnLabel) throws SQLException {
-        return ((Short) current.get(headers.indexOf(columnLabel)));
+        return convertResult(current.get(headers.indexOf(columnLabel)), (short)0);
     }
 
     public int getInt(String columnLabel) throws SQLException {
-        return (Integer) current.get(headers.indexOf(columnLabel));
+        return convertResult(current.get(headers.indexOf(columnLabel)), 0);
     }
 
     public long getLong(String columnLabel) throws SQLException {
-        return (Long) current.get(headers.indexOf(columnLabel));
+        return convertResult(current.get(headers.indexOf(columnLabel)), 0);
     }
 
     public float getFloat(String columnLabel) throws SQLException {
-        return (Float) current.get(headers.indexOf(columnLabel));
+        return convertResult(current.get(headers.indexOf(columnLabel)), 0f);
     }
 
     public double getDouble(String columnLabel) throws SQLException {
-        return (Double) current.get(headers.indexOf(columnLabel));
+        return convertResult(current.get(headers.indexOf(columnLabel)), 0d);
     }
 
     public BigDecimal getBigDecimal(String columnLabel, int scale) throws SQLException {

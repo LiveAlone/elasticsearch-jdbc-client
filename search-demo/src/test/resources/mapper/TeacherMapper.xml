@@ -13,7 +13,7 @@
 	</sql>
 
 	<select id="findAll" resultMap="BaseResultMap">
-		select * from teacher
+		select * from teacher where id = 16
 	</select>
 
 </mapper>

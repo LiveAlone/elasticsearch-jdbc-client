@@ -100,4 +100,22 @@ SQL null : select * from teacher where name = null
 
 { "index" : { "_index" : "teacher", "_type" : "teacher_info", "_id" : "10" } }
 {"id": "10", "name": "qijun", "age": 30, "salary": [{"basic": 50,"improve": 20},{"basic": 100,"improve": 230},{"basic": 100,"improve": 10}]}
+
+{ "index" : { "_index" : "teacher", "_type" : "teacher_info", "_id" : "11" } }
+{"id": "11", "name": null, "age": 10, "salary": [{"basic": 100,"improve": 20},{"basic": 100,"improve": 20},{"basic": 100,"improve": 20}]}
+
+{ "index" : { "_index" : "teacher", "_type" : "teacher_info", "_id" : "12" } }
+{"id": "12", "name": null, "age": 10, "salary": [{"basic": 100,"improve": 20},{"basic": 100,"improve": 20},{"basic": 100,"improve": 20}]}
+
+{ "index" : { "_index" : "teacher", "_type" : "teacher_info", "_id" : "13" } }
+{"id": "13", "age": 10, "salary": [{"basic": 100,"improve": 20},{"basic": 100,"improve": 20},{"basic": 100,"improve": 20}]}
+
+{ "index" : { "_index" : "teacher", "_type" : "teacher_info", "_id" : "14" } }
+{"id": "14", "age": 20, "salary": [{"basic": 100,"improve": 20},{"basic": 100,"improve": 20},{"basic": 100,"improve": 20}]}
+
+{ "index" : { "_index" : "teacher", "_type" : "teacher_info", "_id" : "15" } }
+{"id": "15", "name": "zhetan", "salary": [{"basic": 100,"improve": 20},{"basic": 100,"improve": 20},{"basic": 100,"improve": 20}]}
+
+{ "index" : { "_index" : "teacher", "_type" : "teacher_info", "_id" : "16" } }
+{"id": "16", "age" : null, "name": "zhetan", "salary": [{"basic": 100,"improve": 20},{"basic": 100,"improve": 20},{"basic": 100,"improve": 20}]}
 ```

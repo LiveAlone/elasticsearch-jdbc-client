@@ -6,6 +6,8 @@ import com.qingqing.search.demo.mapper.TeacherMapper;
 import org.elasticsearch.common.collect.Lists;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -23,6 +25,8 @@ import java.util.List;
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})
 public class TeacherMapperTest {
 
+    private static final Logger logger = LoggerFactory.getLogger(TeacherMapperTest.class);
+
     @Autowired
     private ElasticSearchDruidDataSource elasticSearchDruidDataSource;
 
@@ -32,6 +36,7 @@ public class TeacherMapperTest {
     @Test
     public void testMapperQueryCondition(){
         List<Teacher> teachers = teacherMapper.findAll();
+        logger.debug("test debug content  size:{}", teachers.size());
         System.out.println(teachers.size());
         for (Teacher teacher : teachers) {
             System.out.println(teacher.toString());

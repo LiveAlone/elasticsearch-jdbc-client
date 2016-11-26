@@ -54,7 +54,7 @@ public class SearchDaoTest {
 
     @Test
     public void testSearchDao() throws Exception{
-        String query = "select * from teacher where id = 1";
+        String query = "select id, name, age from teacher where id = 1";
 
         SearchDao searchDao = new SearchDao(client);
 

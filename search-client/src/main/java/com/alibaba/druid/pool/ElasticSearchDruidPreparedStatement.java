@@ -86,7 +86,5 @@ public class ElasticSearchDruidPreparedStatement extends PreparedStatementBase{
         }catch (Exception e){
             throw new SQLException("execute() method error");
         }
-
-//        throw new SQLException("un support execute update");
     }
 }
