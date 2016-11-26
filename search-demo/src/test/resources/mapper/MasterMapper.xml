@@ -10,14 +10,18 @@
         <result column="name" property="name"/>
         <result column="height" property="height"/>
         <result column="weight" property="weight"/>
+        <result column="birthday" property="birthday"/>
+        <result column="image" property="image"/>
+        <result column="address" property="address" typeHandler="com.qingqing.search.demo.handler.AddressObjectHandler"/>
+        <result column="salary" property="salaryList" typeHandler="com.qingqing.search.demo.handler.ListSalaryHandler"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        `id` , `age`, `grade`, `sex`, `name`, `height`, `weight`
+        `id` , `age`, `grade`, `sex`, `name`, `height`, `weight`, `birthday`, `image`, `address`, `salary`
     </sql>
 
     <select id="findAll" resultMap="BaseResultMap">
-        select <include refid="Base_Column_List"/> FROM master where id = 9
+        select <include refid="Base_Column_List"/> FROM master where id = 3
     </select>
 
 </mapper>

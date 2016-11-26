@@ -5,6 +5,9 @@ import com.google.common.collect.Maps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -30,7 +33,10 @@ public class ResultConvert {
         convertMap.put(Float.class, new FloatTypeConvert());
         convertMap.put(Double.class, new DoubleTypeConvert());
         convertMap.put(Character.class, new CharTypeConvert());
-
+        convertMap.put(Date.class, new DateTypeConvert());
+        convertMap.put(Timestamp.class, new TimestampTypeConvert());
+        convertMap.put(Time.class, new TimeTypeConvert());
+        convertMap.put(byte[].class, new BytesTypeConvert());
     }
 
     /**

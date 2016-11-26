@@ -59,7 +59,7 @@ public abstract class ObjectAbstractHandler<T> extends BaseTypeHandler<T>{
 
         Map<String, Object> resultMap = new HashMap<>(fields.size());
         for (String field : fields) {
-            resultMap.put(field.substring(field.indexOf(SPLIT_DOT)), rs.getObject(field));
+            resultMap.put(field.substring(field.indexOf(SPLIT_DOT) + 1), rs.getObject(field));
         }
 
         return convertInnerObject(resultMap);

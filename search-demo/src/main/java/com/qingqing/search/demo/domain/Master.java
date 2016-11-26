@@ -1,6 +1,9 @@
 package com.qingqing.search.demo.domain;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by yaoqijun.
@@ -23,6 +26,14 @@ public class Master implements Serializable{
     private Float height;
 
     private Double weight;
+
+    private Date birthday;
+
+    private Byte[] image;
+
+    private Address address;
+
+    private List<Salary> salaryList;
 
     public Long getId() {
         return id;
@@ -80,6 +91,38 @@ public class Master implements Serializable{
         this.name = name;
     }
 
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public Byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(Byte[] image) {
+        this.image = image;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public List<Salary> getSalaryList() {
+        return salaryList;
+    }
+
+    public void setSalaryList(List<Salary> salaryList) {
+        this.salaryList = salaryList;
+    }
+
     @Override
     public String toString() {
         return "Master{" +
@@ -87,8 +130,13 @@ public class Master implements Serializable{
                 ", age=" + age +
                 ", grade=" + grade +
                 ", sex=" + sex +
+                ", name='" + name + '\'' +
                 ", height=" + height +
                 ", weight=" + weight +
+                ", birthday=" + birthday +
+                ", image=" + Arrays.toString(image) +
+                ", address=" + address +
+                ", salaryList=" + salaryList +
                 '}';
     }
 }

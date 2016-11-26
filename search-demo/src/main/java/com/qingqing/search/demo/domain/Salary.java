@@ -33,4 +33,12 @@ public class Salary implements Serializable{
     public void setImprove(Integer improve) {
         this.improve = improve;
     }
+
+    @Override
+    public String toString() {
+        return "Salary{" +
+                "basic=" + basic +
+                ", improve=" + improve +
+                '}';
+    }
 }

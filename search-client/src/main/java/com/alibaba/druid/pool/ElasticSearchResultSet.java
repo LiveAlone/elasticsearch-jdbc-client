@@ -72,7 +72,7 @@ public class ElasticSearchResultSet implements ResultSet {
     }
 
     public byte getByte(int columnIndex) throws SQLException {
-        return 0;
+        return convertResult(current.get(columnIndex), (byte)0);
     }
 
     public short getShort(int columnIndex) throws SQLException {
@@ -100,19 +100,19 @@ public class ElasticSearchResultSet implements ResultSet {
     }
 
     public byte[] getBytes(int columnIndex) throws SQLException {
-        return new byte[0];
+        return convertResult(current.get(columnIndex), new byte[0]);
     }
 
     public Date getDate(int columnIndex) throws SQLException {
-        return (Date) current.get(columnIndex);
+        return convertResult(current.get(columnIndex), new Date(0));
     }
 
     public Time getTime(int columnIndex) throws SQLException {
-        return (Time) current.get(columnIndex);
+        return convertResult(current.get(columnIndex), new Time(0));
     }
 
     public Timestamp getTimestamp(int columnIndex) throws SQLException {
-        return (Timestamp) current.get(columnIndex);
+        return convertResult(current.get(columnIndex), new Timestamp(0));
     }
 
     public InputStream getAsciiStream(int columnIndex) throws SQLException {
@@ -136,7 +136,7 @@ public class ElasticSearchResultSet implements ResultSet {
     }
 
     public byte getByte(String columnLabel) throws SQLException {
-        return 0;
+        return convertResult(current.get(headers.indexOf(columnLabel)), (byte)0);
     }
 
     public short getShort(String columnLabel) throws SQLException {
@@ -164,19 +164,19 @@ public class ElasticSearchResultSet implements ResultSet {
     }
 
     public byte[] getBytes(String columnLabel) throws SQLException {
-        return new byte[0];
+        return convertResult(current.get(headers.indexOf(columnLabel)), new byte[0]);
     }
 
     public Date getDate(String columnLabel) throws SQLException {
-        return (Date) current.get(headers.indexOf(columnLabel));
+        return convertResult(current.get(headers.indexOf(columnLabel)), new Date(0));
     }
 
     public Time getTime(String columnLabel) throws SQLException {
-        return (Time) current.get(headers.indexOf(columnLabel));
+        return convertResult(current.get(headers.indexOf(columnLabel)), new Time(0));
     }
 
     public Timestamp getTimestamp(String columnLabel) throws SQLException {
-        return (Timestamp) current.get(headers.indexOf(columnLabel));
+        return convertResult(current.get(headers.indexOf(columnLabel)), new Timestamp(0));
     }
 
     public InputStream getAsciiStream(String columnLabel) throws SQLException {
