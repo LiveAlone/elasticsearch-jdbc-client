@@ -53,21 +53,40 @@ public class SearchDaoTest {
     }
 
     @Test
-    public void testSearchDao() throws Exception{
-        String query = "select id, name, age from teacher where id = 1";
-
+    public void testAggsBasic() throws Exception{
+        String query = "select min(age) as minCount from master";
         SearchDao searchDao = new SearchDao(client);
-
         QueryAction queryAction = searchDao.explain(query);
         Object execution = QueryActionElasticExecutor.executeAnyAction(searchDao.getClient(), queryAction);
-
-
         ObjectResult result =
                 new ObjectResultsExtractor(false, false).extractResults(execution, true, ",");
-
-
         ObjectMapper mapper = new ObjectMapper();
         System.out.println(mapper.writeValueAsString(result));
+    }
+
+    @Test
+    public void testSearchDao() throws Exception{
+//        String query = "select * from master";
+//        SearchDao searchDao = new SearchDao(client);
+//        QueryAction queryAction = searchDao.explain(query);
+//        Object execution = QueryActionElasticExecutor.executeAnyAction(searchDao.getClient(), queryAction);
+//        ObjectResult result =
+//                new ObjectResultsExtractor(false, false).extractResults(execution, true, ",");
+//        ObjectMapper mapper = new ObjectMapper();
+//        System.out.println(mapper.writeValueAsString(result));
+    }
+
+    @Test
+    public void testDeleteDao() throws Exception{
+        String query = "delete from master where age = 20";
+        SearchDao searchDao = new SearchDao(client);
+        QueryAction queryAction = searchDao.explain(query);
+        Object execution = QueryActionElasticExecutor.executeAnyAction(searchDao.getClient(), queryAction);
+        ObjectResult result =
+                new ObjectResultsExtractor(false, false).extractResults(execution, true, ",");
+        ObjectMapper mapper = new ObjectMapper();
+        System.out.println(mapper.writeValueAsString(result));
+
     }
 
     @After
