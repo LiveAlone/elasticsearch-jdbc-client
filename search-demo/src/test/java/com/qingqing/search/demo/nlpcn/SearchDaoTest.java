@@ -52,9 +52,32 @@ public class SearchDaoTest {
 
     }
 
+    /**
+     * 通过搜索测试NestedType 聚合的操作方式
+     */
+    @Test
+    public void testAggsSearchDao() throws Exception{
+        String query = "select count(id) as idCount from teacher group by age";
+
+        SearchDao searchDao = new SearchDao(client);
+
+        QueryAction queryAction = searchDao.explain(query);
+        Object execution = QueryActionElasticExecutor.executeAnyAction(searchDao.getClient(), queryAction);
+
+
+        ObjectResult result =
+                new ObjectResultsExtractor(false, false).extractResults(execution, true, ",");
+
+
+        ObjectMapper mapper = new ObjectMapper();
+        System.out.println(mapper.writeValueAsString(result));
+    }
+
     @Test
     public void testSearchDao() throws Exception{
-        String query = "select id, name, age from teacher where id = 1";
+//        String query = "select id, name, age from teacher where id = 1";
+//        String query = "select salary.basic, salary.improve from master where id = 1";
+        String query = "select * from master where nested(salary.basic) = 100";
 
         SearchDao searchDao = new SearchDao(client);
 

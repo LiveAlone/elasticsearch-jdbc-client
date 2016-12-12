@@ -1,12 +1,5 @@
 package org.nlpcn.es4sql.query.maker;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 import org.elasticsearch.search.aggregations.AbstractAggregationBuilder;
 import org.elasticsearch.search.aggregations.AggregationBuilder;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
@@ -16,11 +9,9 @@ import org.elasticsearch.search.aggregations.bucket.histogram.DateHistogram;
 import org.elasticsearch.search.aggregations.bucket.histogram.DateHistogramBuilder;
 import org.elasticsearch.search.aggregations.bucket.histogram.Histogram;
 import org.elasticsearch.search.aggregations.bucket.histogram.HistogramBuilder;
-import org.elasticsearch.search.aggregations.bucket.nested.NestedBuilder;
 import org.elasticsearch.search.aggregations.bucket.range.RangeBuilder;
 import org.elasticsearch.search.aggregations.bucket.range.date.DateRangeBuilder;
 import org.elasticsearch.search.aggregations.bucket.terms.TermsBuilder;
-import org.elasticsearch.search.aggregations.metrics.MetricsAggregationBuilder;
 import org.elasticsearch.search.aggregations.metrics.ValuesSourceMetricsAggregationBuilder;
 import org.elasticsearch.search.aggregations.metrics.geobounds.GeoBoundsBuilder;
 import org.elasticsearch.search.aggregations.metrics.percentiles.PercentilesBuilder;
@@ -34,7 +25,9 @@ import org.nlpcn.es4sql.domain.MethodField;
 import org.nlpcn.es4sql.domain.Where;
 import org.nlpcn.es4sql.exception.SqlParseException;
 import org.nlpcn.es4sql.parse.NestedType;
-import org.nlpcn.es4sql.query.join.NestedLoopsElasticRequestBuilder;
+
+import java.math.BigDecimal;
+import java.util.*;
 
 public class AggMaker {
 
