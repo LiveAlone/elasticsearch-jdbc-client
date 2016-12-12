@@ -2,8 +2,6 @@ package com.qingqing.search.demo.elasticsearch;
 
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
-import org.elasticsearch.index.query.QueryBuilder;
-import org.elasticsearch.index.query.QueryBuilders;
 
 /**
  * Created by yaoqijun on 2016/12/2.
