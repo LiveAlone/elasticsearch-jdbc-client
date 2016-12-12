@@ -29,6 +29,8 @@ public class ElasticSearchDruidPreparedStatement extends PreparedStatementBase{
 
     private String sql;
 
+    private static final String PREPARE_STATEMENT_STRING = "\\?";
+
     public ElasticSearchDruidPreparedStatement(String sql, Client client, Connection connection) {
         super(connection);
         this.client = client;
@@ -41,7 +43,7 @@ public class ElasticSearchDruidPreparedStatement extends PreparedStatementBase{
         checkOpen();
 
         try{
-            ObjectResult extractor = getObjectResult(true, sql , false, false);
+            ObjectResult extractor = getObjectResult(true, convertParamToString(sql) , false, false);
             List<String> headers = extractor.getHeaders();
             List<List<Object>> lines = extractor.getLines();
 
@@ -53,7 +55,7 @@ public class ElasticSearchDruidPreparedStatement extends PreparedStatementBase{
         }
     }
 
-    private ObjectResult getObjectResult(boolean flat, String query, boolean includeScore, boolean includeType) throws SqlParseException, SQLFeatureNotSupportedException, Exception, CsvExtractorException {
+    private ObjectResult getObjectResult(boolean flat, String query, boolean includeScore, boolean includeType) throws Exception {
         SearchDao searchDao = new SearchDao(client);
 
         //String rewriteSQL = searchDao.explain(getSql()).explain().explain();
@@ -76,7 +78,7 @@ public class ElasticSearchDruidPreparedStatement extends PreparedStatementBase{
 
         try{
 
-            ObjectResult extractor = getObjectResult(true, sql , false, false);
+            ObjectResult extractor = getObjectResult(true, convertParamToString(sql) , false, false);
             List<String> headers = extractor.getHeaders();
             List<List<Object>> lines = extractor.getLines();
 
@@ -86,5 +88,33 @@ public class ElasticSearchDruidPreparedStatement extends PreparedStatementBase{
         }catch (Exception e){
             throw new SQLException("execute() method error");
         }
+    }
+
+
+    /**
+     * 添加parameters 到 ？ 中
+     * @param sql
+     * @return
+     */
+    private String convertParamToString(String sql){
+        // 简单的 string or number 类型的判断
+        List<Object> params = this.getParameters();
+
+        if(null == params || params.isEmpty()){
+            return sql;
+        }
+
+        for (Object param : params) {
+            sql = sql.replaceFirst(PREPARE_STATEMENT_STRING, objectToString(param));
+        }
+
+        return sql;
+    }
+
+    private String objectToString(Object o){
+        if (o instanceof String || o instanceof Boolean){
+            return "'" + String.valueOf(o) + "'";
+        }
+        return String.valueOf(o);
     }
 }

@@ -1,14 +1,10 @@
 package com.qingqing.search.demo.nlpcn;
 
-import com.alibaba.druid.pool.ElasticSearchDruidDataSource;
 import com.alibaba.druid.pool.result.ObjectResult;
 import com.alibaba.druid.pool.result.ObjectResultsExtractor;
-import com.alibaba.druid.support.json.JSONUtils;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.client.transport.TransportClient;
-import org.elasticsearch.common.collect.Lists;
-import org.elasticsearch.common.jackson.core.JsonParser;
 import org.elasticsearch.common.settings.ImmutableSettings;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
@@ -19,15 +15,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.nlpcn.es4sql.SearchDao;
 import org.nlpcn.es4sql.query.QueryAction;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.net.InetAddress;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.List;
 
 /**
  * Created by yaoqijun.
@@ -74,23 +65,40 @@ public class SearchDaoTest {
     }
 
     @Test
-    public void testSearchDao() throws Exception{
-//        String query = "select id, name, age from teacher where id = 1";
-//        String query = "select salary.basic, salary.improve from master where id = 1";
-        String query = "select * from master where nested(salary.basic) = 100";
-
+    public void testAggsBasic() throws Exception{
+        String query = "select min(age) as minCount from master";
         SearchDao searchDao = new SearchDao(client);
-
         QueryAction queryAction = searchDao.explain(query);
         Object execution = QueryActionElasticExecutor.executeAnyAction(searchDao.getClient(), queryAction);
-
-
         ObjectResult result =
                 new ObjectResultsExtractor(false, false).extractResults(execution, true, ",");
-
-
         ObjectMapper mapper = new ObjectMapper();
         System.out.println(mapper.writeValueAsString(result));
+    }
+
+    @Test
+    public void testSearchDao() throws Exception{
+        String query = "select * from master where id = 9";
+        SearchDao searchDao = new SearchDao(client);
+        QueryAction queryAction = searchDao.explain(query);
+        Object execution = QueryActionElasticExecutor.executeAnyAction(searchDao.getClient(), queryAction);
+        ObjectResult result =
+                new ObjectResultsExtractor(false, false).extractResults(execution, true, ",");
+        ObjectMapper mapper = new ObjectMapper();
+        System.out.println(mapper.writeValueAsString(result));
+    }
+
+    @Test
+    public void testDeleteDao() throws Exception{
+        String query = "delete from master where age = 20";
+        SearchDao searchDao = new SearchDao(client);
+        QueryAction queryAction = searchDao.explain(query);
+        Object execution = QueryActionElasticExecutor.executeAnyAction(searchDao.getClient(), queryAction);
+        ObjectResult result =
+                new ObjectResultsExtractor(false, false).extractResults(execution, true, ",");
+        ObjectMapper mapper = new ObjectMapper();
+        System.out.println(mapper.writeValueAsString(result));
+
     }
 
     @After
