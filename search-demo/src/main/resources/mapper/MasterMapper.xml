@@ -12,7 +12,8 @@
         <result column="weight" property="weight"/>
         <result column="birthday" property="birthday"/>
         <result column="image" property="image"/>
-        <result column="address" property="address" typeHandler="com.qingqing.search.demo.handler.AddressObjectHandler"/>
+        <result column="address.province" property="address.province"/>
+        <result column="address.city" property="address.city"/>
         <result column="salary" property="salaryList" typeHandler="com.qingqing.search.demo.handler.ListSalaryHandler"/>
     </resultMap>
 
