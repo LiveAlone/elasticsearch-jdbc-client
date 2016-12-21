@@ -43,7 +43,7 @@ public class ElasticSearchDruidPreparedStatement extends PreparedStatementBase{
         checkOpen();
 
         try{
-            ObjectResult extractor = getObjectResult(true, convertParamToString(sql) , false, false);
+            ObjectResult extractor = getObjectResult(false, convertParamToString(sql) , false, false);
             List<String> headers = extractor.getHeaders();
             List<List<Object>> lines = extractor.getLines();
 
@@ -78,7 +78,7 @@ public class ElasticSearchDruidPreparedStatement extends PreparedStatementBase{
 
         try{
 
-            ObjectResult extractor = getObjectResult(true, convertParamToString(sql) , false, false);
+            ObjectResult extractor = getObjectResult(false, convertParamToString(sql) , false, false);
             List<String> headers = extractor.getHeaders();
             List<List<Object>> lines = extractor.getLines();
 
