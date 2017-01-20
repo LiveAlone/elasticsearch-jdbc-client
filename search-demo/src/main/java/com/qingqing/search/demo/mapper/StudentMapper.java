@@ -3,6 +3,7 @@ package com.qingqing.search.demo.mapper;
 import com.qingqing.search.demo.domain.Student;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by yaoqijun.
@@ -12,6 +13,6 @@ import java.util.List;
  */
 public interface StudentMapper {
 
-    List<Student> findAll();
+    List<Map> findAll();
 
 }
