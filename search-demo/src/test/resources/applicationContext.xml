@@ -11,7 +11,7 @@
         <!--<property name="url" value="result:elasticsearch://127.0.0.1:9300/teacher"/>-->
     <!--</bean>-->
 
-    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver">
         </property>
         <property name="url" value="jdbc:mysql://localhost:3306/test_personal?characterEncoding=UTF-8"/>
