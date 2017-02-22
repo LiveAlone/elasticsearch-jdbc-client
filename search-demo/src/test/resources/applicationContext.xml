@@ -21,8 +21,6 @@
         <!-- init size -->
         <property name="initialSize" value="1"/>
 
-        <!--maxIdle: 最大空闲连接 -->
-        <property name="maxIdle" value="10" />
         <!--minIdle: 最小空闲连接 -->
         <property name="minIdle" value="5" />
         <!--maxActive: 最大连接数量 -->
@@ -42,14 +40,14 @@
         </property>
     </bean>
 
-    <!--<bean id="sqlDataSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">-->
-        <!--<property name="dataSource" ref="elasticSearchDruidDataSource" />-->
-        <!--<property name="mapperLocations" value="classpath*:mapper/*Mapper.xml"/>-->
-    <!--</bean>-->
+    <bean id="sqlDataSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="mapperLocations" value="classpath*:mapper/*Mapper.xml"/>
+    </bean>
 
-    <!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
-        <!--<property name="sqlSessionFactoryBeanName" value="sqlDataSessionFactory" />-->
-        <!--<property name="basePackage" value="com.qingqing.search.demo.mapper" />-->
-    <!--</bean>-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlDataSessionFactory" />
+        <property name="basePackage" value="com.qingqing.search.demo.mapper" />
+    </bean>
 
 </beans>
